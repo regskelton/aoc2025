@@ -18,8 +18,8 @@ const controller = function () {
 
                     if (dir === 'L') dial -= dist; else dial += dist;
 
-                    if( dial < 0 ) dial += 100
-                    if( dial > 99 ) dial -= 100
+                    while( dial < 0 ) dial += 100
+                    while( dial > 99 ) dial -= 100
 
                     if (dial === 0) zeroes++;
 
