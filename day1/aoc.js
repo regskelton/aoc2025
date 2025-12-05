@@ -17,11 +17,11 @@ const controller = function () {
             }
         } else if (dial > 99) {
             while (dial > 99) {
-                dial -= 100
-
-                if (part2) {
+                if (part2 && (dial !== 100)) {
                     zeroes++;
                 }
+
+                dial -= 100;
             }
         }
 
@@ -48,7 +48,7 @@ const controller = function () {
             {dist: -68, newDial: 82, zeroes: 1, part2: true},
             {dist: -30, newDial: 52, zeroes: 0, part2: true},
             {dist: 48, newDial: 0, zeroes: 1, part2: true},
-            {dist: -5, newDial: 95, zeroes: 1, part2: true},
+            {dist: -5, newDial: 95, zeroes: 0, part2: true},
             {dist: 60, newDial: 55, zeroes: 1, part2: true},
             {dist: -55, newDial: 0, zeroes: 1, part2: true},
             {dist: -1, newDial: 99, zeroes: 0, part2: true},
@@ -111,12 +111,12 @@ const controller = function () {
         init: function () {
             console.log('controller init');
 
-            runTests();
+            //runTests();
 
             //processLines('example.txt');
             //processLines('example.txt', true);
             //processLines('input.txt');
-            //processLines('input.txt', true);
+            processLines('input.txt', true);
         }
     }
 }();
