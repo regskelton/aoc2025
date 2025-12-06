@@ -9,22 +9,30 @@ const controller = function () {
         //stop= start + 10;
 
         for( let x= start; x<= stop; x++) {
-            const xStr= "" + x;
+            const xStr = "" + x;
 
-            let repeat= false;
 
-            // number to be tested must be even length if we want a doubled sequence
-            if( (xStr.length % 2) === 0) {
-                repeat= true;
+            let repeat = false;
+            for (let repeats = 2; repeats <= xStr.length && !repeat; repeats++) {
 
-                const sec= xStr.length /2 ;
+                // number to be tested must be a multiple of the length of the repeated sequence
+                if ((xStr.length % repeats) === 0) {
+                    repeat = true;
 
-                for( let c=0; c < sec && repeat; c++) {
-                    repeat= xStr.charAt(c) === xStr.charAt(c+sec);
+                    const sec = xStr.length / repeats;
+
+                    for (let c = 0; c < sec && repeat; c++) {
+                        for (let r = 1; r < repeats && repeat; r++) {
+                            repeat = xStr.charAt(c) === xStr.charAt(c + r * sec);
+
+                            //console.log( `Tested ${xStr} for ${repeats} reps: ${c}, ${r}, ${sec}: ${repeat} ${xStr.charAt(c)}, ${xStr.charAt( c + r * sec)}`)
+                        }
+                    }
+
                 }
 
-                if( repeat) {
-                    total+= x;
+                if (repeat) {
+                    total += x;
                 }
             }
 
@@ -37,6 +45,7 @@ const controller = function () {
     function runTests() {
         const tData = [
             {start: 11, stop: 22, total: 33, part2: false},
+            {start: 95, stop: 115, total: 210, part2: true},
         ]
 
         for (let i=0; i < tData.length; i++) {
@@ -80,8 +89,8 @@ const controller = function () {
 
             //processLines('example.txt');
             //processLines('example.txt', true);
-            processLines('input.txt');
-            //processLines('input.txt', true);
+            //processLines('input.txt');
+            processLines('input.txt', true);
         }
     }
 }();
